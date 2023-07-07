@@ -10,12 +10,13 @@ public class Enemy : MonoBehaviour
     PlayerScript _pscript;
     public float detectionRange = 5f;    // Range at which the enemy detects the player
     public float attackRange = 2f;        // Range at which the enemy initiates a hit
-    public float attackDelay = 2f;        // Range at which the enemy initiates a hit
+    public float attackDelay = 1.5f;        // Range at which the enemy initiates a hit
     private NavMeshAgent navMeshAgent;    // Reference to the NavMeshAgent component
 
     public float knockbackForce = 5f;
 
     private float timeSinceLastAttack;
+    bool attackCooldown;
     bool ragdolling;
     private Rigidbody rbody;
     Quaternion initialRotation;
@@ -57,9 +58,17 @@ public class Enemy : MonoBehaviour
 
 
     }
+
+   
+
     private void Update()
     {
         timeSinceLastAttack += Time.deltaTime;
+
+        if (!navMeshAgent.enabled)
+        {
+            return;
+        }
 
         if (rbody != null)
         {

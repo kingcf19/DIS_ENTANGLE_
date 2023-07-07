@@ -16,10 +16,32 @@ public class Student
     }
 
 
+    #region neighbor modifiers
+
+   
 
 
 
 
+
+    //     Possible prerequisits:
+    //None = always active
+    //if own happiness stat is above or below a certain value
+    //if in a certain row
+    //if self has neighbours
+
+
+
+    //    Effects:
+    //all other rows get +X
+    //own row gets +X
+    //self has +X
+    //Sets own happiness to the combined value of neighbours
+    //Neighbouring students and self get +X
+    //Left neighbour gets +X and right neighbour +X
+
+
+    #endregion
     [Header("Seated image")]
     public Sprite seatedImage;
 
@@ -41,8 +63,18 @@ public class Student
     [Header("Modifier for the entire row")]
     public float ROW_MODIFIER = 0;
 
-    public StudentPrerequisite prereq = StudentPrerequisite.NEEDS_NOTHING;
+    public StudentEffectPrerequisite prereq = StudentEffectPrerequisite.NEEDS_NOTHING;
+
+    [Header("Prerequisite argument")]
+    public float PREREQ_ARGUMENT = 0;
 
     [Header("Effect of prerequisite being met.")]
-    public StudentEffects effect= StudentEffects.None;
+    public StudentEffectType effect= StudentEffectType.None;
+
+
+    [Header("Effect argument 1/left")]
+    public float EFFECT_ARG_ONE = 0;
+
+    [Header("Effect argument 2/right")]
+    public float EFFECT_ARG_two = 0;
 }
